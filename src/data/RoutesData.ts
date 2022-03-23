@@ -1,4 +1,4 @@
-import { RoutesData } from "./interface/route.interface";
+import { RoutesData } from "../interfaces/route.interface"
 
 export const routesData : RoutesData[] = [
     {
@@ -11,7 +11,7 @@ export const routesData : RoutesData[] = [
     },
     {
         path: "/user",
-        components : "User"
+        component : "User"
     },
     {
         path: "/user/[:id]",
