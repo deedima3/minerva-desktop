@@ -16,10 +16,11 @@ Minerva desktop app is an application that can help librarian to search and mana
 ## Developer Installation
 
 1. Install NPM and Node on your computer and Yarn and Rust
-https://nodejs.org/en/download/
-https://yarnpkg.com/getting-started/install
-https://www.npmjs.com/package/npm
-https://www.rust-lang.org/tools/install
+
+- https://nodejs.org/en/download/
+- https://yarnpkg.com/getting-started/install
+- https://www.npmjs.com/package/npm
+- https://www.rust-lang.org/tools/install
 
 2. Install Dependencies using yarn install
 
