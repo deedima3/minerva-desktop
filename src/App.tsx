@@ -1,8 +1,6 @@
 import React from "react";
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { RoutesData } from "./interfaces/route.interface";
-import { routesData } from "./data/RoutesData"
 import Home from "./routes/Home";
 import Book from "./routes/Book"
 import User from "./routes/User";
@@ -13,15 +11,11 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        {routesData.map((route, index) => {
-          return (
-            <Route
-              key={index}
-              path={route.path}
-              element={route.component}
-            />
-          );
-        })}
+        <Route path="/" element={<Home />} />
+        <Route path="/book" element={<Book />} />
+        <Route path="/user" element={<User />} />
+        <Route path="/user/*" element={<UserDetails />} />
+        <Route path="/book/*" element={<BookDetails />} />
       </Routes>
     </BrowserRouter>
   );
