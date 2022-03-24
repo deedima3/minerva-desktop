@@ -1,8 +1,11 @@
 import React from 'react'
+import PageLayout from '../components/Layout/PageLayout'
 
 const BookDetails = () => {
   return (
-    <div>BookDetails</div>
+    <PageLayout>
+      
+    </PageLayout>
   )
 }
 
