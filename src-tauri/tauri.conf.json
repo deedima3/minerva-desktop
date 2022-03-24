@@ -57,17 +57,21 @@
         "title": "Minerva - Library Management System",
         "width": 1280,
         "height": 720,
-        "resizable": false,
+        "resizable": true,
         "fullscreen": false,
-        "visible": false
+        "visible": false,
+        "minWidth": 852,
+        "minHeight": 480
       },
       {
-      "width": 400,
-      "height": 200,
-      "decorations": false,
+        "width": 400,
+        "height": 200,
+        "decorations": false,
+        "alwaysOnTop": true,
+        "center" : true,
         "url": "splashscreen.html",
         "label": "splashscreen"
-    }
+      }
     ],
     "security": {
       "csp": null
