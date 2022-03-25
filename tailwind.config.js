@@ -4,6 +4,7 @@ module.exports = {
   ],
   theme: {
     extend: {
+      backgroundColor: ['even'],
       colors : {
         'brand' : {
           'primary' : '#58F9C8',

@@ -1,5 +1,7 @@
 export interface TableProps{
-    data : any[];
+    data : any[][];
     columns : string[];
-    extraClass? : string | null;
+    extraClassContainer? : string | null;
+    extraClassTable? : string | null;
+    button? : any;
 }

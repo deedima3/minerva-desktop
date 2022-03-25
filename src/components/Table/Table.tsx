@@ -1,31 +1,49 @@
 import React from "react";
 import { TableProps } from "../../interfaces/table.interface";
+import CustomButton from "../Button/CustomButton";
 
-const Table = ({extraClass, data, columns} : TableProps) => {
+const Table = ({
+  extraClassContainer,
+  extraClassTable,
+  data,
+  columns,
+  button,
+}: TableProps) => {
   return (
-    <div className="bg-brand-black-primary">
-      <table>
+    <div
+      className={`bg-brand-black-primary rounded-md p-5 w-full ${extraClassContainer} text-white`}
+    >
+      <table
+        className={`${extraClassTable} even:bg-brand-black-secondary table-auto`}
+      >
         <thead>
           <tr>
-            {
-                columns.map((column, index) => {
-                    return (
-                        <th key={index}>{column}</th>
-                    )
-                })
-            }
+            {columns.map((column, index) => {
+              return (
+                <th className="font-bold text-lg" key={index}>
+                  {column}
+                </th>
+              );
+            })}
           </tr>
         </thead>
         <tbody>
-          <tr>
-          {
-                data.map((data, index) => {
-                    return (
-                        <th key={index}>{data}</th>
-                    )
-                })
-            }
-          </tr>
+          {data.map((row, index) => {
+            return (
+              <tr className="even:bg-brand-black-secondary" key={index}>
+                {row.map((column, index) => {
+                  return (
+                    <th className="font-thin text-sm" key={index}>
+                      {column}
+                    </th>
+                  );
+                })}
+                <th>
+                  {button}
+                </th>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </div>

@@ -15,7 +15,7 @@ const Sidebar = () => {
       <div className="flex flex-col items-center justify-evenly h-72">
         <SidebarLink routes="/" icon={<HomeOutlined style={{color : '#FBFBFB', fontSize: '24px'}} />} iconSelected={<HomeOutlined style={{color : '#58F9C8', fontSize: '24px'}}/>} /> 
         <SidebarLink routes="/book" icon={<BookOutlined style={{color : '#FBFBFB', fontSize: '24px'}}/>} iconSelected={<BookOutlined style={{color : '#58F9C8', fontSize: '24px'}}/>} />
-        <SidebarLink routes="/book" icon={<UserOutlined style={{color : '#FBFBFB', fontSize: '24px'}}/>} iconSelected={<UserOutlined style={{color : '#58F9C8', fontSize: '24px'}}/>} /> 
+        <SidebarLink routes="/user" icon={<UserOutlined style={{color : '#FBFBFB', fontSize: '24px'}}/>} iconSelected={<UserOutlined style={{color : '#58F9C8', fontSize: '24px'}}/>} /> 
       </div>
       <div className="flex flex-col items-center justify-center">
         <Link to={"/admin"}>
