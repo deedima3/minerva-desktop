@@ -59,7 +59,7 @@ const BookDetails = () => {
           </CustomButton>
         </div>
       </div>
-      <Box extraClass={"w-full rounded-xl mt-5 relative"}>
+      <Box variant="secondary" extraClass={"w-full rounded-xl mt-5 relative"}>
         <div className="py-5 px-8 bg-brand-primary w-full inset-0 rounded-t-xl h-max">
           <h3 className="text-2xl font-Inter font-bold text-brand-black-primary">
             Sebuah seni untuk bersikap bodo amat
@@ -95,7 +95,7 @@ const BookDetails = () => {
           <Table
             data={data}
             columns={columns}
-            extraClassTable="w-full"
+            extraClassTable="w-full even:bg-brand-black-secondary"
             extraClassContainer="w-full mt-10"
           />
         </div>

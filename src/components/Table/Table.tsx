@@ -11,10 +11,10 @@ const Table = ({
 }: TableProps) => {
   return (
     <div
-      className={`bg-brand-black-primary rounded-md p-5 w-full ${extraClassContainer} text-white`}
+      className={`rounded-md p-5 w-full ${extraClassContainer} text-white`}
     >
       <table
-        className={`${extraClassTable} even:bg-brand-black-secondary table-auto`}
+        className={`${extraClassTable} table-auto`}
       >
         <thead>
           <tr>
