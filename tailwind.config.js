@@ -4,6 +4,7 @@ module.exports = {
   ],
   theme: {
     extend: {
+      backgroundColor: ['even'],
       fontFamily : {
         Inter : ['Inter', 'sans-serif']
       },
