@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 const Sidebar = () => {
 
   return (
-    <div className="flex flex-col items-center bg-brand-black-secondary min-h-screen w-24 py-5 justify-between shadow-sidebar">
+    <div className="flex flex-col items-center bg-brand-black-secondary min-h-screen w-24 py-5 justify-between shadow-sidebar shrink-0">
       <div className="flex flex-col items-center justify-center">
         <img className="w-11" src={logo} alt="Minerva Logo" />
       </div>
