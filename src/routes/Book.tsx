@@ -72,7 +72,7 @@ const Book = () => {
       <div className="flex w-full justify-between">
         <div className="">
           <h1 className="text-4xl font-Inter font-bold text-white">
-            Book's Details
+            Book Stock
           </h1>
         </div>
         <div className="flex w-1/2 justify-between">

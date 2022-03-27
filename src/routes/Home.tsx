@@ -10,7 +10,7 @@ import { data } from "../data/linedummy";
 const Home = () => {
   return (
     <PageLayout>
-      <div className="p-8 flex flex-row justify-between w-full gap-10">
+      <div className="flex flex-row justify-between w-full gap-10">
         <div className="flex flex-col w-full">
           <h1 className="text-4xl font-Inter font-bold text-white">
             Statistik Harian
