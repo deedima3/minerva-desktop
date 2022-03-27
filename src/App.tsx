@@ -5,12 +5,19 @@ import Book from "./routes/Book"
 import User from "./routes/User";
 import UserDetails from "./routes/UserDetails"
 import BookDetails from "./routes/BookDetails";
+import { useLocalStorage } from "./hooks/useLocalStorage";
+import Login from "./routes/Login";
+import Forget from "./routes/Forget";
 
 const App = () => {
+
+  const [user, setUser, removeUser] = useLocalStorage("user", null);
+  
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={user ? <Home /> : <Login />} key={user}/>
+        <Route path="/forget" element={ <Forget/> } key={user}/>
         <Route path="/book" element={<Book />} />
         <Route path="/user" element={<User />} />
         <Route path="/user/:id" element={<UserDetails />} />
