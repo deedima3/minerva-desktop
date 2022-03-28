@@ -1,5 +1,6 @@
 import { EditOutlined } from "@ant-design/icons";
 import React from "react";
+import { Link } from "react-router-dom";
 import Box from "../components/Box/Box";
 import CustomButton from "../components/Button/CustomButton";
 import PageLayout from "../components/Layout/PageLayout";
@@ -51,7 +52,9 @@ const BookDetails = () => {
           Book's Details
         </h1>
         <div className="flex w-1/3 items-center gap-5 justify-end">
-          <CustomButton variant="solid">Cek Stok</CustomButton>
+          <Link to='/stock'>
+            <CustomButton variant="solid">Cek Stok</CustomButton>
+          </Link>
           <CustomButton variant="solid">
             <div className="flex items-center gap-2">
               <EditOutlined style={{ fontSize: "20px" }} />
@@ -93,7 +96,7 @@ const BookDetails = () => {
             </div>
           </div>
           <h3 className="text-white font-bold text-2xl mt-10 underline underline-offset-8 decoration-brand-primary">
-            Riwayat Peminjaman :</h3>
+            Riwayat Peminjaman </h3>
           <Table
             data={data}
             columns={columns}

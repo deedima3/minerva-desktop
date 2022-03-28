@@ -1,10 +1,12 @@
-import { EditOutlined } from "@ant-design/icons";
+import { EditOutlined, UserAddOutlined } from "@ant-design/icons";
 import React from "react";
+import { Link } from "react-router-dom";
 import Box from "../components/Box/Box";
 import CustomButton from "../components/Button/CustomButton";
 import PageLayout from "../components/Layout/PageLayout";
 import Table from "../components/Table/Table";
 import userprofile from "../static/userprofile.svg";
+import SmallButton from "../components/Button/SmallButton";
 
 const UserDetails = () => {
  const columns = [
@@ -46,8 +48,8 @@ return (
         <CustomButton variant="outline">Edit User</CustomButton>
         <CustomButton variant="solid">
           <div className="flex items-center gap-2">
-            <EditOutlined style={{ fontSize: "20px" }} />
-            Ubah Data
+            <UserAddOutlined style={{ fontSize: "20px" }} />
+            Tambah Akun
           </div>
         </CustomButton>
       </div>
@@ -77,8 +79,15 @@ return (
             </div>
           </div>
         </div>
-        <h3 className="text-white font-bold text-2xl mt-10 underline underline-offset-8 decoration-brand-primary">
-          Riwayat Peminjaman :</h3>
+        <div className="flex justify-between mt-10">
+          <h3 className="text-white font-bold text-2xl underline underline-offset-8 decoration-brand-primary">
+            Riwayat Peminjaman </h3>
+          <Link to="/borrowed">
+            <SmallButton variant="outline">
+              Detail Borrowed
+            </SmallButton>
+          </Link>
+        </div>
         <Table
           data={data}
           columns={columns}

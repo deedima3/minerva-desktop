@@ -1,4 +1,4 @@
-import { EditOutlined, FundViewOutlined } from "@ant-design/icons";
+import { EditOutlined, UserAddOutlined } from "@ant-design/icons";
 import React from "react";
 import { Link } from "react-router-dom";
 import Box from "../components/Box/Box";
@@ -68,8 +68,8 @@ const User = () => {
           <CustomButton variant="outline">Print</CustomButton>
           <CustomButton variant="solid">
             <div className="flex items-center gap-2">
-              <EditOutlined style={{ fontSize: "20px" }} />
-              Ubah Data
+              <UserAddOutlined style={{ fontSize: "20px" }} />
+              Tambah Akun
             </div>
           </CustomButton>
         </div>
