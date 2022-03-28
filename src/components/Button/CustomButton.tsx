@@ -13,7 +13,7 @@ const CustomButton = ({
       ? "bg-brand-primary font-bold text-brand-bg-primary"
       : "bg-transparent font-bold text-brand-primary outline outline-brand-primary outline-1";
 
-  const buttonClass = `py-3 px-10 rounded-md ${variantClass} ${extraClass}`;
+  const buttonClass = `py-3 px-10 rounded-md min-w-fit ${variantClass} ${extraClass}`;
 
   return (
     <button onClick={onClick} className={buttonClass + " " + extraClass}>

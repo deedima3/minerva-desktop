@@ -72,10 +72,10 @@ const Book = () => {
       <div className="flex w-full justify-between">
         <div className="">
           <h1 className="text-4xl font-Inter font-bold text-white">
-            Book Stock
+            Book List
           </h1>
         </div>
-        <div className="flex w-1/2 justify-between">
+        <div className="flex w-1/2 gap-5 justify-end">
           <CustomButton variant="outline">Export</CustomButton>
           <CustomButton variant="outline">Print</CustomButton>
           <CustomButton variant="solid">
@@ -90,10 +90,11 @@ const Book = () => {
         <Table
           data={data}
           columns={columns}
-          extraClassTable="w-full even:bg-brand-black-primary"
-          extraClassContainer="w-full mt-10"
+          extraClassTable="w-full even:bg-brand-black-alt"
+          extraClassContainer="w-full mt-10 bg-brand-black-secondar"
           button={
-            <div className="flex flex-col gap-2 w-24 justify-center items-center">
+            <div className="flex justify-center">
+            <div className="flex flex-col gap-2 w-24 items-center">
               <SmallButton
                 variant="solid"
                 extraClass={"text-brand-black-primary w-20"}
@@ -108,6 +109,7 @@ const Book = () => {
                   Detail
                 </SmallButton>
               </Link>
+            </div>
             </div>
           }
         />
