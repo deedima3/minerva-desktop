@@ -5,67 +5,21 @@ import Box from "../components/Box/Box";
 import CustomButton from "../components/Button/CustomButton";
 import SmallButton from "../components/Button/SmallButton";
 import PageLayout from "../components/Layout/PageLayout";
+import Modal from "../components/Modals/Modal";
 import Table from "../components/Table/Table";
+import { columns, data } from "../data/bookData";
 
 const Book = () => {
-  const columns = [
-    "Title",
-    "Penerbit",
-    "Deskripsi",
-    "Bahasa",
-    "Edisi",
-    "Ketersediaan",
-    "Stok",
-  ];
 
-  const data = [
-    [
-      "Tailwind on Fire",
-      "Gramedia",
-      "Aku suka Tailwind on Fire",
-      "Indonesia",
-      "1",
-      "Ada",
-      "150",
-    ],
-    [
-      "Tailwind on Fire",
-      "Gramedia",
-      "Aku suka Tailwind on Fire",
-      "Indonesia",
-      "1",
-      "Ada",
-      "150",
-    ],
-    [
-      "Tailwind on Fire",
-      "Gramedia",
-      "Aku suka Tailwind on Fire",
-      "Indonesia",
-      "1",
-      "Ada",
-      "150",
-    ],
-    [
-      "Tailwind on Fire",
-      "Gramedia",
-      "Aku suka Tailwind on Fire",
-      "Indonesia",
-      "1",
-      "Ada",
-      "150",
-    ],
+  const [Open, setOpen] = React.useState(false);
 
-    [
-      "Tailwind on Fire",
-      "Gramedia",
-      "Aku suka Tailwind on Fire",
-      "Indonesia",
-      "1",
-      "Ada",
-      "150",
-    ],
-  ];
+  const handleOpen = () => {
+    setOpen(true)
+  }
+
+  const handleClose = () => {
+    setOpen(false)
+  }
 
   return (
     <PageLayout>
@@ -78,7 +32,7 @@ const Book = () => {
         <div className="flex w-1/2 gap-5 justify-end">
           <CustomButton variant="outline">Export</CustomButton>
           <CustomButton variant="outline">Print</CustomButton>
-          <CustomButton variant="solid">
+          <CustomButton variant="solid" onClick={handleOpen}>
             <div className="flex items-center gap-2">
               <EditOutlined style={{ fontSize: "20px" }} />
               Ubah Data
@@ -114,6 +68,11 @@ const Book = () => {
           }
         />
       </Box>
+      <Modal show={Open} onClose={handleClose} >
+        <p>
+        This is modal
+        </p>
+      </Modal>
     </PageLayout>
   );
 };
