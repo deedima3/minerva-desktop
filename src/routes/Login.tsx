@@ -13,6 +13,7 @@ import { useLocalStorage } from "../hooks/useLocalStorage";
 import { useToast } from "../hooks/useToast";
 import { StopOutlined } from "@ant-design/icons";
 import Toast from "../components/Toast/Toast";
+import SmallButton from "../components/Button/SmallButton";
 
 const Login = () => {
   const schema = yup.object({
@@ -40,7 +41,7 @@ const Login = () => {
   };
 
   return (
-    <AuthLayout>
+    <><AuthLayout>
       <div className="absolute bottom-0 z-0 w-screen h-screens flex justify-between items-end">
         <img src={elips} alt="Circle Image" />
         <img src={minerva} alt="Circle Image" className="w-96" />
@@ -60,8 +61,7 @@ const Login = () => {
                 id="username"
                 className="bg-white rounded-md px-5 py-2 text-brand-black-secondary border-none"
                 placeholder="jeremisukaloli@gmail.com"
-                {...register("username")}
-              />
+                {...register("username")} />
               {errors.username && (
                 <p className="text-red-500 text-xs">{errors.username.message}</p>
               )}
@@ -75,8 +75,7 @@ const Login = () => {
                 id="password"
                 className="bg-white rounded-md px-5 py-2 text-brand-black-secondary border-none w-96"
                 placeholder="akusukakucing123"
-                {...register("password")}
-              />
+                {...register("password")} />
               {errors.password && (
                 <p className="text-red-500 text-xs">{errors.password.message}</p>
               )}
@@ -94,7 +93,14 @@ const Login = () => {
           </div>
         </form>
       </div>
-    </AuthLayout>
+    </AuthLayout><Link to="/book">
+        <SmallButton
+          variant="solid"
+          extraClass={"text-brand-black-primary"}
+        >
+          Book Page
+        </SmallButton>
+      </Link></>
   );
 };
 

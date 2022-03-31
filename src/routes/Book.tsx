@@ -9,6 +9,7 @@ import SearchBar from "../components/SearchBar/SearchBar";
 import Modal from "../components/Modals/Modal";
 import Table from "../components/Table/Table";
 import { columns, data } from "../data/bookData";
+import ConfirmCard from "../components/Card/ConfirmCard";
 
 const Book = () => {
 
@@ -54,6 +55,7 @@ const Book = () => {
               <SmallButton
                 variant="solid"
                 extraClass={"text-brand-black-primary w-20"}
+                onClick={handleOpen}
               >
                 Delete
               </SmallButton>
@@ -71,9 +73,7 @@ const Book = () => {
         />
       </Box>
       <Modal show={Open} onClose={handleClose} >
-        <p>
-        This is modal
-        </p>
+          <ConfirmCard thing="user" word="user profile"/>
       </Modal>
     </PageLayout>
   );
