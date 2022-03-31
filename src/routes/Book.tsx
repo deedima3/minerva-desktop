@@ -6,67 +6,21 @@ import CustomButton from "../components/Button/CustomButton";
 import SmallButton from "../components/Button/SmallButton";
 import PageLayout from "../components/Layout/PageLayout";
 import SearchBar from "../components/SearchBar/SearchBar";
+import Modal from "../components/Modals/Modal";
 import Table from "../components/Table/Table";
+import { columns, data } from "../data/bookData";
 
 const Book = () => {
-  const columns = [
-    "Title",
-    "Penerbit",
-    "Deskripsi",
-    "Bahasa",
-    "Edisi",
-    "Ketersediaan",
-    "Stok",
-  ];
 
-  const data = [
-    [
-      "Tailwind on Fire",
-      "Gramedia",
-      "Aku suka Tailwind on Fire",
-      "Indonesia",
-      "1",
-      "Ada",
-      "150",
-    ],
-    [
-      "Tailwind on Fire",
-      "Gramedia",
-      "Aku suka Tailwind on Fire",
-      "Indonesia",
-      "1",
-      "Ada",
-      "150",
-    ],
-    [
-      "Tailwind on Fire",
-      "Gramedia",
-      "Aku suka Tailwind on Fire",
-      "Indonesia",
-      "1",
-      "Ada",
-      "150",
-    ],
-    [
-      "Tailwind on Fire",
-      "Gramedia",
-      "Aku suka Tailwind on Fire",
-      "Indonesia",
-      "1",
-      "Ada",
-      "150",
-    ],
+  const [Open, setOpen] = React.useState(false);
 
-    [
-      "Tailwind on Fire",
-      "Gramedia",
-      "Aku suka Tailwind on Fire",
-      "Indonesia",
-      "1",
-      "Ada",
-      "150",
-    ],
-  ];
+  const handleOpen = () => {
+    setOpen(true)
+  }
+
+  const handleClose = () => {
+    setOpen(false)
+  }
 
   return (
     <PageLayout>
@@ -79,7 +33,7 @@ const Book = () => {
         <div className="flex w-1/2 gap-5 justify-end">
           <CustomButton variant="outline">Export</CustomButton>
           <CustomButton variant="outline">Print</CustomButton>
-          <CustomButton variant="solid">
+          <CustomButton variant="solid" onClick={handleOpen}>
             <div className="flex items-center gap-2">
               <EditOutlined style={{ fontSize: "20px" }} />
               Ubah Data
@@ -93,7 +47,7 @@ const Book = () => {
           data={data}
           columns={columns}
           extraClassTable="w-full even:bg-brand-black-alt"
-          extraClassContainer="w-full mt-5 bg-brand-black-secondar"
+          extraClassContainer="w-full mt-5 bg-brand-black-secondary"
           button={
             <div className="flex justify-center">
             <div className="flex flex-col gap-2 w-24 items-center">
@@ -116,6 +70,11 @@ const Book = () => {
           }
         />
       </Box>
+      <Modal show={Open} onClose={handleClose} >
+        <p>
+        This is modal
+        </p>
+      </Modal>
     </PageLayout>
   );
 };
