@@ -6,6 +6,8 @@ import PageLayout from "../components/Layout/PageLayout";
 import Sidebar from "../components/Navbar/Sidebar";
 import { LineChart, Line, CartesianGrid, Legend, Tooltip, XAxis, YAxis } from "recharts";
 import { data } from "../data/linedummy";
+import { StopOutlined } from "@ant-design/icons";
+import Toast from "../components/Toast/Toast";
 
 const Home = () => {
   return (
