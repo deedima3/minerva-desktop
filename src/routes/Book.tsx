@@ -71,7 +71,7 @@ const Book = () => {
         />
       </Box>
       <Modal show={modal} onClose={handleClose} >
-        <ConfirmCard handleCancel={handleClose} handleConfirm={handleConfirm} thing="user" word="user profile"/>
+        <ConfirmCard handleCancel={handleClose} handleConfirm={handleConfirm} thing="book" word="book's data"/>
       </Modal>
     </PageLayout>
   );
