@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./routes/Home";
 import Book from "./routes/Book"
@@ -12,6 +12,12 @@ import Forget from "./routes/Forget";
 const App = () => {
 
   const [user, setUser, removeUser] = useLocalStorage("user", null);
+
+  useEffect(() => {
+    if (user) {
+      console.log(user)
+    }
+  }, [user])
   
   return (
     <BrowserRouter>

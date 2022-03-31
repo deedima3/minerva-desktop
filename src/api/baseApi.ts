@@ -1,8 +1,8 @@
 import axios from "axios"
 
 const client = axios.create({
-    baseURL: "http://localhost:3000/api",
-    timeout: 1000,
+    baseURL: "https://minerva-production.up.railway.app/api",
+    withCredentials: true,
 })
 
 export default client
