@@ -16,11 +16,11 @@ const Table = ({
       <table
         className={`${extraClassTable} table-auto`}
       >
-        <thead>
+        <thead  className="md:border-b-2 border-brand-primary">
           <tr>
             {columns.map((column, index) => {
               return (
-                <th className="font-bold text-lg" key={index}>
+                <th className="font-bold text-lg pb-2" key={index}>
                   {column}
                 </th>
               );
@@ -30,15 +30,15 @@ const Table = ({
         <tbody>
           {data.map((row, index) => {
             return (
-              <tr className="even:bg-brand-black-secondary" key={index}>
+              <tr className="even:bg-brand-black-primary" key={index}>
                 {row.map((column, index) => {
                   return (
-                    <th className="font-thin text-sm" key={index}>
+                    <th className="font-thin text-sm pb-3 pt-3.5" key={index}>
                       {column}
                     </th>
                   );
                 })}
-                <th>
+                <th className="pt-3.5">
                   {button}
                 </th>
               </tr>
