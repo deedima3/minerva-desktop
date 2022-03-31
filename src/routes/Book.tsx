@@ -10,18 +10,16 @@ import Modal from "../components/Modals/Modal";
 import Table from "../components/Table/Table";
 import { columns, data } from "../data/bookData";
 import ConfirmCard from "../components/Card/ConfirmCard";
+import { useModal } from "../hooks/useModal";
 
 const Book = () => {
 
-  const [Open, setOpen] = React.useState(false);
-
-  const handleOpen = () => {
-    setOpen(true)
+  const handleConfirm = () => {
+    console.log("Confirm")
+    setModal(false)
   }
 
-  const handleClose = () => {
-    setOpen(false)
-  }
+  const [modal, setModal, handleClose, handleOpen] = useModal();
 
   return (
     <PageLayout>
@@ -72,8 +70,8 @@ const Book = () => {
           }
         />
       </Box>
-      <Modal show={Open} onClose={handleClose} >
-          <ConfirmCard thing="user" word="user profile"/>
+      <Modal show={modal} onClose={handleClose} >
+        <ConfirmCard handleCancel={handleClose} handleConfirm={handleConfirm} thing="user" word="user profile"/>
       </Modal>
     </PageLayout>
   );

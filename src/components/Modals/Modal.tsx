@@ -18,11 +18,8 @@ export default function Modal({ show, onClose, children, title, extraClass}: Mod
   };
 
   const modalContent = show ? (
-    <ModalOverlay darkAmount={0}>
-      <div onClick={() => onClose()} className={extraClass}>
+    <ModalOverlay>
         {children}
-        <button onClick={handleCloseClick}></button>
-      </div>
     </ModalOverlay>
   ) : null;
 
