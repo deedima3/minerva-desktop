@@ -52,7 +52,7 @@ const BookDetails = () => {
           Book's Details
         </h1>
         <div className="flex w-1/3 items-center gap-5 justify-end">
-          <Link to='/stock'>
+          <Link to="/stock">
             <CustomButton variant="solid">Cek Stok</CustomButton>
           </Link>
           <CustomButton variant="solid">

@@ -16,7 +16,7 @@ const Table = ({
       <table
         className={`${extraClassTable} table-auto`}
       >
-        <thead  className="md:border-b-2 border-brand-primary">
+        <thead className="md:border-b-2 border-brand-secondary">
           <tr>
             {columns.map((column, index) => {
               return (
