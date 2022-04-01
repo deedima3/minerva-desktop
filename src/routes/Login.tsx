@@ -13,7 +13,6 @@ import { useLocalStorage } from "../hooks/useLocalStorage";
 import { useToast } from "../hooks/useToast";
 import { StopOutlined } from "@ant-design/icons";
 import Toast from "../components/Toast/Toast";
-import SmallButton from "../components/Button/SmallButton";
 
 const Login = () => {
   const schema = yup.object({
@@ -41,7 +40,7 @@ const Login = () => {
   };
 
   return (
-    <><AuthLayout>
+    <AuthLayout>
       <div className="absolute bottom-0 z-0 w-screen h-screens flex justify-between items-end">
         <img src={elips} alt="Circle Image" />
         <img src={minerva} alt="Circle Image" className="w-96" />
@@ -93,14 +92,7 @@ const Login = () => {
           </div>
         </form>
       </div>
-    </AuthLayout><Link to="/book">
-        <SmallButton
-          variant="solid"
-          extraClass={"text-brand-black-primary"}
-        >
-          Book Page
-        </SmallButton>
-      </Link></>
+    </AuthLayout>
   );
 };
 
