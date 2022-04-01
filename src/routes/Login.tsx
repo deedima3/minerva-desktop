@@ -55,12 +55,12 @@ const Login = () => {
     handleStopLoading()
     if (token) {
       console.log(token)
+      showToast(2000, toastContentSuccess)
       setUser(token);
       location.reload()
     } else{
-      showToast(2000, toastContentSuccess)
+      showToast(2000, toastContentFailed)
     }
-    showToast(2000, toastContentFailed)
   };
 
   return (
