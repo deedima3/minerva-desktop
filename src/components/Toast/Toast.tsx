@@ -1,10 +1,14 @@
-import { StopOutlined, CheckOutlined, WarningOutlined } from "@ant-design/icons";
+import {
+  StopOutlined,
+  CheckOutlined,
+  WarningOutlined,
+} from "@ant-design/icons";
+import { AnimatePresence, motion } from "framer-motion";
 import React from "react";
 import ReactDOM from "react-dom";
 import { ToastProps } from "../../interfaces/toast.interface";
 
-const Toast = ({ show, title, variant, extraClass, message}: ToastProps) => {
-
+const Toast = ({ show, title, variant, extraClass, message }: ToastProps) => {
   const getColor = () => {
     switch (variant) {
       case "success":
@@ -16,7 +20,7 @@ const Toast = ({ show, title, variant, extraClass, message}: ToastProps) => {
       default:
         return "bg-brand-primary-secondary";
     }
-  }
+  };
 
   const getIcons = () => {
     switch (variant) {
@@ -29,20 +33,31 @@ const Toast = ({ show, title, variant, extraClass, message}: ToastProps) => {
       default:
         return null;
     }
-  }
+  };
 
-  const toast = show ? (
-    <div className="absolute bottom-0 right-0 py-8 px-10 z-50">
-      <div className={`bg-brand-black-secondary rounded-md flex px-20 py-10 justify-between w-full gap-10`}>
-        <div className="flex items-center">{getIcons()}</div>
-        <div className={`w-0.5 ${getColor()}`}/>
-        <div className="text-white justify-center flex flex-col">
-          <h1 className="text-xl font-bold">{title}</h1>
-          <h3 className="text-md">{message}</h3>
+  const toast = (
+    <AnimatePresence>
+      {show && <motion.div
+        key="toast"
+        animate={{ opacity: 1 }}
+        initial={{ opacity: 0 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 1, opacity: { ease: "linear" } }}
+        className="absolute bottom-0 right-0 py-8 px-10 z-20"
+      >
+        <div
+          className={`bg-brand-black-secondary rounded-md flex px-20 py-10 justify-between w-full gap-10`}
+        >
+          <div className="flex items-center">{getIcons()}</div>
+          <div className={`w-0.5 ${getColor()}`} />
+          <div className="text-white justify-center flex flex-col">
+            <h1 className="text-xl font-bold">{title}</h1>
+            <h3 className="text-md">{message}</h3>
+          </div>
         </div>
-      </div>
-    </div>
-  ) : null;
+      </motion.div>}
+    </AnimatePresence>
+  )
 
   return ReactDOM.createPortal(toast, document.getElementById("toast")!);
 };

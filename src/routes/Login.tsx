@@ -15,6 +15,8 @@ import { StopOutlined } from "@ant-design/icons";
 import Toast from "../components/Toast/Toast";
 import SmallButton from "../components/Button/SmallButton";
 import { ToastProps } from "../interfaces/toast.interface";
+import { useLoader } from "../hooks/useLoader";
+import Loader from "../components/Loader/Loader";
 
 const Login = () => {
   const schema = yup.object({
@@ -24,6 +26,7 @@ const Login = () => {
 
   const [user, setUser, removeUser] = useLocalStorage("user", null);
   const [toast, showToast] = useToast(5000);
+  const [isLoading, handleStopLoading, handleStartLoading] = useLoader();
 
   const {
     register,
@@ -47,7 +50,9 @@ const Login = () => {
 
   const onSubmit = async (data: any) => {
     console.log(data)
+    handleStartLoading()
     let token = await AdminAuthApi.login(data);
+    handleStopLoading()
     if (token) {
       console.log(token)
       setUser(token);
@@ -113,7 +118,8 @@ const Login = () => {
           </div>
         </form>
       </div>
-      <Toast show={toast.show} title={toast.title} message={toast.message} variant={toast.variant}></Toast>
+      <Toast show={toast.show} title={toast.title} message={toast.message} variant={toast.variant}/>
+      <Loader isLoading={isLoading}/>
     </AuthLayout>
   );
 };
