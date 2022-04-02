@@ -6,54 +6,19 @@ import CustomButton from "../components/Button/CustomButton";
 import SmallButton from "../components/Button/SmallButton";
 import PageLayout from "../components/Layout/PageLayout";
 import Table from "../components/Table/Table";
+import SearchBar from "../components/SearchBar/SearchBar";
+import { columns, data } from "../data/userData";
+import { useModal } from "../hooks/useModal";
+import ConfirmCard from "../components/Card/ConfirmCard";
+import Modal from "../components/Modals/Modal";
 
 const User = () => {
-  const columns = [
-    'id', 'Nama', 'Institusi', 'Gender', 'Email', 'Phone'
-  ];
-  
-  const data = [
-    [
-      '123',
-      'Wayan Sudi Dima',
-      'Universita Udayana',
-      'L',
-      'wynsudima@gmail.com',
-      '08123456789'
-    ],
-    [
-      '127',
-      'Jeremi Herodian A.',
-      'Universita Udayana',
-      'L',
-      'jerjerjeremi@gmail.com',
-      '087348497086'
-    ],
-    [
-      '129',
-      'Sagung Putri',
-      'Universitas Udayana',
-      'P',
-      'emailnyagp@gmail.com',
-      '082146239521'
-    ],
-    [
-      '132',
-      'Bianca Githa',
-      'Universita Udayana',
-      'P',
-      'biancagsp@gmail.com',
-      '0987654321345'
-    ],
-    [
-      '123',
-      'Wayan Sudi Dima',
-      'Universita Udayana',
-      'L',
-      'wynsudima@gmail.com',
-      '08123456789'
-    ]
-  ];
+  const handleConfirm = () => {
+    console.log("Confirm")
+    setModal(false)
+  }
+
+  const [modal, setModal, handleClose, handleOpen] = useModal();
 
   return (
     <PageLayout>
@@ -74,18 +39,20 @@ const User = () => {
           </CustomButton>
         </div>
       </div>
+      <SearchBar/>
       <Box variant="secondary" extraClass={"w-full rounded-xl mt-5 relative"}>
         <Table
           data={data}
           columns={columns}
           extraClassTable="w-full even:bg-brand-black-primary"
-          extraClassContainer="w-full mt-10"
+          extraClassContainer="w-full mt-5"
           button={
             <div className="flex justify-center">
             <div className="flex flex-col gap-2 w-24 items-center">
               <SmallButton
                 variant="solid"
                 extraClass={"text-brand-black-primary w-20"}
+                onClick={handleOpen}
               >
                 Delete
               </SmallButton>
@@ -102,6 +69,9 @@ const User = () => {
           }
         />
       </Box>
+      <Modal show={modal} onClose={handleClose} >
+        <ConfirmCard handleCancel={handleClose} handleConfirm={handleConfirm} thing="user" word="user profile"/>
+      </Modal>
     </PageLayout>
   );
 };

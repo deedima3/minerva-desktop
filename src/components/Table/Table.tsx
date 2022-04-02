@@ -20,7 +20,7 @@ const Table = ({
           <tr>
             {columns.map((column, index) => {
               return (
-                <th className="font-bold text-lg pb-2" key={index}>
+                <th className="font-bold text-lg pb-2 pl-3" key={index}>
                   {column}
                 </th>
               );
@@ -33,7 +33,7 @@ const Table = ({
               <tr className="even:bg-brand-black-primary" key={index}>
                 {row.map((column, index) => {
                   return (
-                    <th className="font-thin text-sm pb-3 pt-3.5" key={index}>
+                    <th className="font-thin text-sm pb-3 pt-3.5 pl-3" key={index}>
                       {column}
                     </th>
                   );
