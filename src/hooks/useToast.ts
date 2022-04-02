@@ -1,15 +1,35 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
+import { ToastProps } from '../interfaces/toast.interface'
 
 export function useToast(duration : number){
-    const [show, setShow] = useState(true)
 
-    const showToast = (duration : number) => {
-        setShow(true)
+    const [toast, setToast] = useState<ToastProps>({
+        title: '',
+        message: '',
+        variant: 'info',
+        extraClass: null,
+        show: false
+    })
+
+    const showToast = (duration : number, {variant, title, message} : ToastProps) => {
+        setToast({
+            title,
+            message,
+            variant,
+            extraClass: null,
+            show: true
+        })
         setTimeout(() => {
-            setShow(false)
+            setToast({
+                title,
+                message,
+                variant,
+                extraClass: null,
+                show: false
+            })
         }, duration)
     }
 
-    return [show, showToast] as const
+    return [toast, showToast] as const
 
 }
