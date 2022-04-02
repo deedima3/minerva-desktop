@@ -14,8 +14,8 @@ const Admin = () => {
 
   const [user, setUser, removeUser] = useLocalStorage("user", null);
 
-  const logout = () => {
-      setUser(null);
+  const logout = async () => {
+      await removeUser()
       location.replace("/");
   }
   return (
