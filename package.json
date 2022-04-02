@@ -6,13 +6,15 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "tauri": "tauri"
+    "tauri": "tauri",
+    "test" : "tauri dev && cypress run"
   },
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
     "@hookform/resolvers": "^2.8.8",
     "@tauri-apps/api": "^1.0.0-rc.2",
     "axios": "^0.26.1",
+    "cypress": "^9.5.3",
     "framer-motion": "^6.2.8",
     "query": "^0.2.0",
     "react": "^17.0.2",

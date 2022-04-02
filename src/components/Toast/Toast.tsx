@@ -38,6 +38,7 @@ const Toast = ({ show, title, variant, extraClass, message }: ToastProps) => {
   const toast = (
     <AnimatePresence>
       {show && <motion.div
+        id="toast"
         key="toast"
         animate={{ opacity: 1 }}
         initial={{ opacity: 0 }}
