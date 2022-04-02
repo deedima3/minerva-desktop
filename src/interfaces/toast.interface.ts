@@ -3,6 +3,5 @@ export interface ToastProps {
     message: string;
     variant: "success" | "warning" | "error" | "info";
     extraClass?: string | null;
-    icon : any
-    show : boolean
+    show? : boolean
 }
