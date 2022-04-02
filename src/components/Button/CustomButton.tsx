@@ -10,8 +10,8 @@ const CustomButton = ({
 
   const variantClass =
     variant === "solid"
-      ? "bg-brand-primary font-bold text-brand-bg-primary"
-      : "bg-transparent font-bold text-brand-primary outline outline-brand-primary outline-1";
+      ? "bg-brand-primary font-bold text-brand-bg-primary hover:bg-emerald-400 transition duration-200 ease-in-out"
+      : "bg-transparent font-bold text-brand-primary outline outline-brand-primary outline-1 hover:bg-brand-primary hover:text-brand-black-primary transition duration-200 ease-in-out";
 
   const buttonClass = `py-3 px-10 rounded-md min-w-fit ${variantClass} ${extraClass}`;
 

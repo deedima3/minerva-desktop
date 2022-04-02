@@ -10,6 +10,7 @@ import Login from "./routes/Login";
 import Forget from "./routes/Forget";
 import BookStock from "./routes/BookStock";
 import BorrowedBook from "./routes/BorrowedBook";
+import Admin from "./routes/Admin";
 
 const App = () => {
 
@@ -29,9 +30,10 @@ const App = () => {
         <Route path="/book" element={<Book />} />
         <Route path="/user" element={<User />} />
         <Route path="/borrowed" element={<BorrowedBook />} />
-        <Route path="/stock" element={<BookStock />} />
+        <Route path="/stock" element={<BookStock />} />s
         <Route path="/user/:id" element={<UserDetails />} />
         <Route path="/book/:id" element={<BookDetails />} />
+        <Route path="/admin" element={<Admin />} />
       </Routes>
     </BrowserRouter>
   );
