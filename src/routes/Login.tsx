@@ -84,8 +84,7 @@ const Login = () => {
                 id="username"
                 className="bg-white rounded-md px-5 py-2 text-brand-black-secondary border-none"
                 placeholder="jeremisukaloli@gmail.com"
-                {...register("username")}
-              />
+                {...register("username")} />
               {errors.username && (
                 <p className="text-red-500 text-xs">{errors.username.message}</p>
               )}
@@ -99,8 +98,7 @@ const Login = () => {
                 id="password"
                 className="bg-white rounded-md px-5 py-2 text-brand-black-secondary border-none w-96"
                 placeholder="akusukakucing123"
-                {...register("password")}
-              />
+                {...register("password")} />
               {errors.password && (
                 <p className="text-red-500 text-xs">{errors.password.message}</p>
               )}

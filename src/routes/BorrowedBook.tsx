@@ -7,51 +7,19 @@ import SmallButton from "../components/Button/SmallButton";
 import PageLayout from "../components/Layout/PageLayout";
 import Table from "../components/Table/Table";
 import SearchBar from "../components/SearchBar/SearchBar";
+import { columns, data } from "../data/userData";
+import { useModal } from "../hooks/useModal";
+import ConfirmCard from "../components/Card/ConfirmCard";
+import Modal from "../components/Modals/Modal";
 
 const BorrowedBook = () => {
-  const columns = [
-    "id",
-    "Judul Buku",
-    "Penerbit",
-    "Bahasa",
-    "Status Peminjaman",
-    "Tgl Expired"
-  ];
 
-  const data = [
-    [
-        '123',
-        'Harry Potter and The Hogwarts Collection',
-        'Gramedia Pustaka Utama',
-        'Inggris',
-        'Sudah Dikembalikan',
-        '2022-03-28',
-      ],
-      [
-        '127',
-        'Think and Grow Rich',
-        'Gramedia Pustaka Utama',
-        'Indonesia',
-        'Sedang Dipinjam',
-        '2022-03-28',
-      ],
-      [
-        '132',
-        'Harry Potter Aja',
-        'Gramedia Pustaka Utama',
-        'Indonesia',
-        'Sedang Dipinjam',
-        '2022-03-28',
-      ],
-      [
-        '132',
-        'Harry Potter Aja',
-        'Gramedia Pustaka Utama',
-        'Indonesia',
-        'Sudah Dikembalikan',
-        '2022-03-28',
-      ],
-    ];
+  const handleConfirm = () => {
+    console.log("Confirm")
+    setModal(false)
+  }
+
+  const [modal, setModal, handleClose, handleOpen] = useModal();
     
 
   return (
@@ -84,6 +52,7 @@ const BorrowedBook = () => {
                     <SmallButton
                       variant="solid"
                       extraClass={"text-brand-black-primary w-20"}
+                      onClick={handleOpen}
                     >
                     Delete
                    </SmallButton>
@@ -92,6 +61,9 @@ const BorrowedBook = () => {
           }
         />
       </Box>
+      <Modal show={modal} onClose={handleClose} >
+        <ConfirmCard handleCancel={handleClose} handleConfirm={handleConfirm} thing="data" word="borrowed data"/>
+      </Modal>
     </PageLayout>
   );
 };

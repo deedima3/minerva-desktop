@@ -71,7 +71,7 @@ const BookDetails = () => {
         </div>
         <div className="py-5 px-8">
           <div className="flex gap-8">
-            <img src={bookimage2} alt="Book Image" className="rounded-md" />
+            <img src={bookimage2} alt="Book Image" className="w-64 h-48 rounded-md" />
             <div className="flex w-full flex-col">
               <h3 className="text-white font-bold text-2xl underline underline-offset-8 decoration-brand-primary">
                 Informasi Buku :</h3>
@@ -83,9 +83,9 @@ const BookDetails = () => {
                   <p>Penerbit : Gramedia Pustaka</p>
                   <p>Tipe Buku : Karya Ilmiah</p>
                   <p>Bahasa : Latin</p>
-                  <p>ISBN : - </p>
                 </div>
                 <div className="text-white font-light text-s ">
+                  <p>ISBN : - </p>
                   <p>Edisi : 5</p>
                   <p>Ketersediaan : Ada</p>
                   <p>Total Stok : 2</p>
