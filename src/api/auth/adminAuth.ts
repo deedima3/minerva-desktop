@@ -1,4 +1,4 @@
-import { CookiesApi } from "../../helper/cookiesApi";
+import { CookiesApi } from "../../shared/cookiesApi";
 import { LoginProps } from "../../interfaces/auth.interface";
 import client from "../baseApi";
 

@@ -11,15 +11,67 @@ import Table from "../components/Table/Table";
 import { columns, data } from "../data/bookData";
 import ConfirmCard from "../components/Card/ConfirmCard";
 import { useModal } from "../hooks/useModal";
+import { save } from "@tauri-apps/api/dialog";
+import ModalsForm from "../components/Modals/ModalsForm";
+import * as yup from "yup";
+import { useToast } from "../hooks/useToast";
+import { useLoader } from "../hooks/useLoader";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { formfieldBookData } from "../data/formfieldBookData";
+import FormTextInput from "../components/Form/FormTextInput";
 
 const Book = () => {
-
   const handleConfirm = () => {
-    console.log("Confirm")
-    setModal(false)
+    console.log("Confirm");
+    setModal(false);
+  };
+
+  const pushData = (data : any) => {
+    console.log("Push Data");
+    console.log(data)
   }
 
+  const schema = yup.object({
+    image: yup.string().optional(),
+    title: yup.string().required("Judul wajib diisi"),
+    judulSeri: yup.string().required("Judul seri wajib diisi"),
+    penerbit: yup.string().required("Penerbit wajib diisi"),
+    deskripsi: yup.string().required("Deskripsi wajib diisi"),
+    idJenis: yup.number().positive().required("Jenis wajib diisi"),
+    bahasa: yup.string().required("Bahasa wajib diisi"),
+    ISBN: yup.string().required("ISBN wajib diisi"),
+    edisi: yup.string().required("Edisi wajib diisi"),
+    subjek: yup.string().required("Subjek wajib diisi"),
+    idKategori: yup.number().positive().required("Kategori wajib diisi"),
+  });
+
+  const [toast, showToast] = useToast(5000);
+  const [isLoading, handleStopLoading, handleStartLoading] = useLoader();
+
   const [modal, setModal, handleClose, handleOpen] = useModal();
+  const [confirmModal, setconfirmModal, handleconfirmClose, handleconfirmOpen] =
+    useModal();
+
+  const {
+    register,
+    handleSubmit,
+    setError,
+    formState: { errors },
+    reset,
+  } = useForm({ resolver: yupResolver(schema) });
+
+  const exportData = async () => {
+    console.log("Export Data");
+    let dataPath = await save();
+    console.log(dataPath);
+  };
+
+  const printData = async () => {
+    console.log("Print Data");
+    let dataPath = await save();
+    console.log(dataPath);
+  };
 
   return (
     <PageLayout>
@@ -30,17 +82,21 @@ const Book = () => {
           </h1>
         </div>
         <div className="flex w-1/2 gap-5 justify-end">
-          <CustomButton variant="outline">Export</CustomButton>
-          <CustomButton variant="outline">Print</CustomButton>
+          <CustomButton variant="outline" onClick={exportData}>
+            Export
+          </CustomButton>
+          <CustomButton variant="outline" onClick={printData}>
+            Print
+          </CustomButton>
           <CustomButton variant="solid" onClick={handleOpen}>
             <div className="flex items-center gap-2">
               <EditOutlined style={{ fontSize: "20px" }} />
-              Ubah Data
+              Add Data
             </div>
           </CustomButton>
         </div>
       </div>
-      <SearchBar/>
+      <SearchBar />
       <Box variant="secondary" extraClass={"w-full rounded-xl mt-5 relative"}>
         <Table
           data={data}
@@ -49,29 +105,63 @@ const Book = () => {
           extraClassContainer="w-full mt-5 bg-brand-black-secondary"
           button={
             <div className="flex justify-center">
-            <div className="flex flex-col gap-2 w-24 items-center">
-              <SmallButton
-                variant="solid"
-                extraClass={"text-brand-black-primary w-20"}
-                onClick={handleOpen}
-              >
-                Delete
-              </SmallButton>
-              <Link to="/book/1">
+              <div className="flex flex-col gap-2 w-24 items-center">
                 <SmallButton
                   variant="solid"
-                  extraClass={"text-brand-black-primary"}
+                  extraClass={"text-brand-black-primary w-20"}
+                  onClick={handleconfirmOpen}
                 >
-                  Detail
+                  Delete
                 </SmallButton>
-              </Link>
-            </div>
+                <Link to="/book/1">
+                  <SmallButton
+                    variant="solid"
+                    extraClass={"text-brand-black-primary"}
+                  >
+                    Detail
+                  </SmallButton>
+                </Link>
+              </div>
             </div>
           }
         />
       </Box>
-      <Modal show={modal} onClose={handleClose} >
-        <ConfirmCard handleCancel={handleClose} handleConfirm={handleConfirm} thing="book" word="book's data"/>
+      <Modal show={modal} onClose={handleClose}>
+        <ModalsForm
+          title={"Add New Books"}
+          handleCancel={handleClose}
+          handleConfirm={handleClose}
+          handleSubmit={handleSubmit(pushData)}
+        >
+          <div className="flex gap-5">
+            <div className="flex flex-col gap-5">
+              {formfieldBookData.left.map(({title, placeholder, fieldname, type}) => {
+                if (type == "text"){
+                  return (
+                    <FormTextInput title={title} placeholder={placeholder} fieldname={fieldname} register={register} errors={errors}/>
+                  )
+                }
+              })}
+            </div>
+            <div className="flex flex-col gap-5">
+            {formfieldBookData.right.map(({title, placeholder, fieldname, type}) => {
+                if (type == "text"){
+                  return (
+                    <FormTextInput title={title} placeholder={placeholder!} fieldname={fieldname} register={register} errors={errors}/>
+                  )
+                }
+              })}
+            </div>
+          </div>
+        </ModalsForm>
+      </Modal>
+      <Modal show={confirmModal} onClose={handleconfirmClose}>
+        <ConfirmCard
+          thing={""}
+          word={""}
+          handleCancel={handleconfirmClose}
+          handleConfirm={handleconfirmClose}
+        />
       </Modal>
     </PageLayout>
   );
