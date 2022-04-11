@@ -22,14 +22,15 @@ export const formfieldBookData = {
       title: "Deskripsi",
       placeholder: "Deskripsi Buku",
       fieldname: "deskripsi",
-      type: "text",
+      type: "textarea",
     },
   ],
   right: [
     {
-      title: "idJenis",
+      title: "Id Jenis",
       fieldname: "idJenis",
       type: "select",
+      option : ["Kategori 1", "Kategori 2", "Kategori 3"]
     },
     {
         title : "Bahasa",
@@ -59,6 +60,7 @@ export const formfieldBookData = {
         title : "Kategori",
         fieldname : "idKaegori",
         type : "select",
+        option : ["Kategori 1", "Kategori 2", "Kategori 3"]
     },
   ],
 };

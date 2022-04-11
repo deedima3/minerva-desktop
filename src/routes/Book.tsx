@@ -20,6 +20,9 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { formfieldBookData } from "../data/formfieldBookData";
 import FormTextInput from "../components/Form/FormTextInput";
+import FormSelect from "../components/Form/FormSelect";
+import FormTextField from "../components/Form/FormTextField";
+import FormLooper from "../components/Form/FormLooper";
 
 const Book = () => {
   const handleConfirm = () => {
@@ -27,10 +30,10 @@ const Book = () => {
     setModal(false);
   };
 
-  const pushData = (data : any) => {
+  const pushData = (data: any) => {
     console.log("Push Data");
-    console.log(data)
-  }
+    console.log(data);
+  };
 
   const schema = yup.object({
     image: yup.string().optional(),
@@ -134,24 +137,18 @@ const Book = () => {
           handleSubmit={handleSubmit(pushData)}
         >
           <div className="flex gap-5">
-            <div className="flex flex-col gap-5">
-              {formfieldBookData.left.map(({title, placeholder, fieldname, type}) => {
-                if (type == "text"){
-                  return (
-                    <FormTextInput title={title} placeholder={placeholder} fieldname={fieldname} register={register} errors={errors}/>
-                  )
-                }
-              })}
-            </div>
-            <div className="flex flex-col gap-5">
-            {formfieldBookData.right.map(({title, placeholder, fieldname, type}) => {
-                if (type == "text"){
-                  return (
-                    <FormTextInput title={title} placeholder={placeholder!} fieldname={fieldname} register={register} errors={errors}/>
-                  )
-                }
-              })}
-            </div>
+            <FormLooper
+              extraClass="flex flex-col gap-5"
+              formdata={formfieldBookData.left}
+              register={register}
+              errors={errors}
+            />
+            <FormLooper
+              extraClass="flex flex-col gap-5"
+              formdata={formfieldBookData.right}
+              register={register}
+              errors={errors}
+            />
           </div>
         </ModalsForm>
       </Modal>
