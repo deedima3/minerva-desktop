@@ -19,10 +19,8 @@ import { useLoader } from "../hooks/useLoader";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { formfieldBookData } from "../data/formfieldBookData";
-import FormTextInput from "../components/Form/FormTextInput";
-import FormSelect from "../components/Form/FormSelect";
-import FormTextField from "../components/Form/FormTextField";
 import FormLooper from "../components/Form/FormLooper";
+import { useQuery } from 'react-query'
 
 const Book = () => {
   const handleConfirm = () => {
@@ -50,11 +48,16 @@ const Book = () => {
   });
 
   const [toast, showToast] = useToast(5000);
-  const [isLoading, handleStopLoading, handleStartLoading] = useLoader();
 
   const [modal, setModal, handleClose, handleOpen] = useModal();
   const [confirmModal, setconfirmModal, handleconfirmClose, handleconfirmOpen] =
     useModal();
+
+    const {data, isLoading, status} = useQuery({
+      queryKey : "get-book",
+      queryFn : async () => {},
+      enabled : true
+    })
 
   const {
     register,
@@ -102,7 +105,7 @@ const Book = () => {
       <SearchBar />
       <Box variant="secondary" extraClass={"w-full rounded-xl mt-5 relative"}>
         <Table
-          data={data}
+          data={data!}
           columns={columns}
           extraClassTable="w-full even:bg-brand-black-alt"
           extraClassContainer="w-full mt-5 bg-brand-black-secondary"

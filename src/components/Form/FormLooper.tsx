@@ -1,10 +1,11 @@
 import React from "react";
+import { FormFieldData } from "../../interfaces/formdata.interface";
 import FormSelect from "./FormSelect";
 import FormTextField from "./FormTextField";
 import FormTextInput from "./FormTextInput";
 
 interface FormLooper {
-  formdata: any;
+  formdata: FormFieldData[];
   register: any;
   errors: any;
   extraClass: string;

@@ -16,6 +16,7 @@ export class AdminAuthApi {
 
     static async logout() {
         CookiesApi.deleteCookie("username");
+        localStorage.setItem("user", "");
     }
 
     static async refresh(){

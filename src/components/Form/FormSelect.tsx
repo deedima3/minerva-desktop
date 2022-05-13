@@ -1,6 +1,6 @@
 import React from "react";
 
-interface FormSelectField {
+export interface FormSelectField {
   title: string;
   register: any;
   errors: any;

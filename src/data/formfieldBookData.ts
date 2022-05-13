@@ -1,4 +1,6 @@
-export const formfieldBookData = {
+import { FormFieldData } from "../interfaces/formdata.interface";
+
+export const formfieldBookData : {left : FormFieldData[], right : FormFieldData[]} = {
   left: [
     {
       title: "Book Title",
