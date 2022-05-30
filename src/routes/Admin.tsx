@@ -9,13 +9,14 @@ import CustomButton from "../components/Button/CustomButton";
 import PageLayout from "../components/Layout/PageLayout";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import minervaLogo from "../static/MinervaPng.png";
+import { AdminAuthApi } from "../api/auth/adminAuth";
 
 const Admin = () => {
 
   const [user, setUser, removeUser] = useLocalStorage("user", null);
 
   const logout = async () => {
-      await removeUser()
+      await AdminAuthApi.logout();
       location.replace("/");
   }
   return (

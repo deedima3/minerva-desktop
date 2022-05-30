@@ -18,6 +18,7 @@ const BookDetails = () => {
     "Status Peminjaman",
     "Tgl Expired",
   ];
+
   const data = [
     [
       "20004",
@@ -44,6 +45,8 @@ const BookDetails = () => {
       "2020-01-01",
     ],
   ];
+
+  
 
   return (
     <PageLayout>

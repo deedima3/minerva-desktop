@@ -1,6 +1,6 @@
 export interface CustomButtonProps{
     children : any;
-    onClick? : ( event : any ) => void | null;
+    onClick? : () => {} | void | null;
     variant : string;
     extraClass? : string | null;
 }

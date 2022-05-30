@@ -1,4 +1,4 @@
-import { CookiesApi } from "../../helper/cookiesApi";
+import { CookiesApi } from "../../shared/cookiesApi";
 import { LoginProps } from "../../interfaces/auth.interface";
 import client from "../baseApi";
 
@@ -16,6 +16,7 @@ export class AdminAuthApi {
 
     static async logout() {
         CookiesApi.deleteCookie("username");
+        localStorage.setItem("user", "");
     }
 
     static async refresh(){
