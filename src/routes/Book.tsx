@@ -20,7 +20,8 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { formfieldBookData } from "../data/formfieldBookData";
 import FormLooper from "../components/Form/FormLooper";
-import { useQuery } from 'react-query'
+import adminBookApi  from "../api/admin/adminBookApi"
+import { useMutation, useQuery } from 'react-query'
 
 const Book = () => {
   const handleConfirm = () => {
@@ -53,14 +54,26 @@ const Book = () => {
   const [confirmModal, setconfirmModal, handleconfirmClose, handleconfirmOpen] =
     useModal();
 
-    const {data, isLoading, status} = useQuery({
-      queryKey : "get-book",
-      queryFn : async () => {},
+    const fetchBookData = async (user : any) => {
+      const data = await adminBookApi.getAllBooks(user);
+      console.log(data);
+    };
+  
+    const {data, isLoading, status} = useQuery("get-book", fetchBookData, {
       enabled : true
     })
+    
+    const onSubmit = async (data: any, user: any) => {
+      const response = await adminBookApi.createBook(data, user);
+      return await response.json()
+    }
+
+    const creat = useMutation(onSubmit, {
+     
+    });
 
   const {
-    register,
+    register, 
     handleSubmit,
     setError,
     formState: { errors },

@@ -11,6 +11,9 @@ import Forget from "./routes/Forget";
 import BookStock from "./routes/BookStock";
 import BorrowedBook from "./routes/BorrowedBook";
 import Admin from "./routes/Admin";
+import { QueryClient, QueryClientProvider } from "react-query";
+
+const queryClient = new QueryClient()
 
 const App = () => {
 
@@ -23,6 +26,7 @@ const App = () => {
   }, [user])
   
   return (
+    <QueryClientProvider client={queryClient}>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={user ? <Home /> : <Login />} key={user}/>
@@ -36,6 +40,7 @@ const App = () => {
         <Route path="/admin" element={<Admin />} />
       </Routes>
     </BrowserRouter>
+    </QueryClientProvider>
   );
 };
 
