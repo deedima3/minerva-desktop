@@ -4,4 +4,5 @@ export interface TableProps{
     extraClassContainer? : string | null;
     extraClassTable? : string | null;
     button? : any;
+    handleconfirmOpen? : any
 }

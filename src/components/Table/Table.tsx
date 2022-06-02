@@ -1,6 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { TableProps } from "../../interfaces/table.interface";
 import CustomButton from "../Button/CustomButton";
+import SmallButton from "../Button/SmallButton";
 
 const Table = ({
   extraClassContainer,
@@ -39,7 +41,15 @@ const Table = ({
                   );
                 })}
                 <th className="pt-3.5">
-                  {button}
+                <Link to={`/book/${row[4]}}`}>
+                  {console.log(row)}
+                  <SmallButton
+                    variant="solid"
+                    extraClass={"text-brand-black-primary"}
+                  >
+                    Detail
+                  </SmallButton>
+                </Link>
                 </th>
               </tr>
             );

@@ -3,8 +3,8 @@ export const columns = [
     "Penerbit",
     "Deskripsi",
     "Bahasa",
-    "Edisi",
-    "Ketersediaan",
+    "ISBN",
+    "Ada",
     "Stok",
   ];
 

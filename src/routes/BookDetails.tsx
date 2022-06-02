@@ -1,10 +1,12 @@
 import { EditOutlined } from "@ant-design/icons";
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import adminBookApi from "../api/admin/adminBookApi";
 import Box from "../components/Box/Box";
 import CustomButton from "../components/Button/CustomButton";
 import PageLayout from "../components/Layout/PageLayout";
 import Table from "../components/Table/Table";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 import bookimage from "../static/bookimage.svg";
 import bookimage2 from "../static/bookimage2.svg"
 
@@ -46,6 +48,22 @@ const BookDetails = () => {
     ],
   ];
 
+  const [bookData, setBookData] = useState({})
+  const [user, setUser, removeUser] = useLocalStorage("user", null);
+
+  const { id } = useParams()
+  
+  const fetchData = async () => {
+    const response = await adminBookApi.getDetailBook(user!, id!);
+    console.log(response)
+    setBookData(response.data)
+  }
+
+  useEffect(() => {
+    if(user && id){
+      fetchData()
+    }
+  }, [user, id])
   
 
   return (

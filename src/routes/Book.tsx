@@ -1,5 +1,5 @@
 import { EditOutlined, FundViewOutlined } from "@ant-design/icons";
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Box from "../components/Box/Box";
 import CustomButton from "../components/Button/CustomButton";
@@ -21,6 +21,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { formfieldBookData } from "../data/formfieldBookData";
 import FormLooper from "../components/Form/FormLooper";
 import { useQuery } from 'react-query'
+import adminBookApi from "../api/admin/adminBookApi";
+import { useEffect } from "react";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 
 const Book = () => {
   const handleConfirm = () => {
@@ -53,11 +56,32 @@ const Book = () => {
   const [confirmModal, setconfirmModal, handleconfirmClose, handleconfirmOpen] =
     useModal();
 
-    const {data, isLoading, status} = useQuery({
-      queryKey : "get-book",
-      queryFn : async () => {},
-      enabled : true
+  const [ data, setData ] = useState([]);
+
+  const [user, setUser, removeUser] = useLocalStorage("user", null);
+
+  const fetchData = async () => {
+    let data = await adminBookApi.getAllBooks(user!);
+    console.log(data)
+    let returnData = data.map((item: any) => {
+      let arrayReturn = []
+      arrayReturn.push(item.JudulSeri)
+      arrayReturn.push(item.Penerbit)
+      arrayReturn.push(item.Deskripsi)
+      arrayReturn.push(item.Bahasa)
+      arrayReturn.push(item.ISBN)
+      arrayReturn.push(item.Ketersediaan.toString())
+      arrayReturn.push(item.Stock)
+      return arrayReturn
     })
+    setData(returnData);
+  }
+
+  useEffect(() => {
+    if (user) {
+      fetchData();
+    }
+  } , [user])
 
   const {
     register,
@@ -119,14 +143,6 @@ const Book = () => {
                 >
                   Delete
                 </SmallButton>
-                <Link to="/book/1">
-                  <SmallButton
-                    variant="solid"
-                    extraClass={"text-brand-black-primary"}
-                  >
-                    Detail
-                  </SmallButton>
-                </Link>
               </div>
             </div>
           }
