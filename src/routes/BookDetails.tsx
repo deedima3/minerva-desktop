@@ -4,11 +4,21 @@ import { Link, useParams } from "react-router-dom";
 import adminBookApi from "../api/admin/adminBookApi";
 import Box from "../components/Box/Box";
 import CustomButton from "../components/Button/CustomButton";
+import DetailList from "../components/Form/DetailList";
 import PageLayout from "../components/Layout/PageLayout";
 import Table from "../components/Table/Table";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import bookimage from "../static/bookimage.svg";
 import bookimage2 from "../static/bookimage2.svg"
+import { leftRows, rightRows } from "../data/bookDetailsData";
+import { formBookUpdate } from "../data/formUpdateBook";
+import { useModal } from "../hooks/useModal";
+import Modal from "../components/Modals/Modal";
+import ModalsForm from "../components/Modals/ModalsForm";
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import FormLooper from "../components/Form/FormLooper";
 
 const BookDetails = () => {
 
@@ -48,6 +58,28 @@ const BookDetails = () => {
     ],
   ];
 
+  const handleConfirm = () => {
+    console.log("Confirm");
+    setModal(false);
+  };
+
+  const pushData = (data: any) => {
+    console.log("Push Data");
+    console.log(data);
+  };
+
+  const {
+    register,
+    handleSubmit,
+    setError,
+    formState: { errors },
+    reset,
+  } = useForm();
+
+  const [modal, setModal, handleClose, handleOpen] = useModal();
+  const [confirmModal, setconfirmModal, handleconfirmClose, handleconfirmOpen] =
+    useModal();
+
   const [bookData, setBookData] = useState({})
   const [user, setUser, removeUser] = useLocalStorage("user", null);
 
@@ -64,7 +96,6 @@ const BookDetails = () => {
       fetchData()
     }
   }, [user, id])
-  
 
   return (
     <PageLayout>
@@ -76,7 +107,7 @@ const BookDetails = () => {
           <Link to="/stock">
             <CustomButton variant="solid">Cek Stok</CustomButton>
           </Link>
-          <CustomButton variant="solid">
+          <CustomButton variant="solid" onClick={handleOpen}>
             <div className="flex items-center gap-2">
               <EditOutlined style={{ fontSize: "20px" }} />
               Ubah Data
@@ -96,24 +127,10 @@ const BookDetails = () => {
             <div className="flex w-full flex-col">
               <h3 className="text-white font-bold text-2xl underline underline-offset-8 decoration-brand-primary">
                 Informasi Buku :</h3>
-              <div className="flex justify-start gap-x-24 w-full mt-4">
-                <div className="text-white font-light text-s ">
-                  <p>ID Buku : BK120</p>
-                  <p>Nomor Seri : 01</p>
-                  <p>Judul Seri : Lorem Ipsum</p>
-                  <p>Penerbit : Gramedia Pustaka</p>
-                  <p>Tipe Buku : Karya Ilmiah</p>
-                  <p>Bahasa : Latin</p>
-                </div>
-                <div className="text-white font-light text-s ">
-                  <p>ISBN : - </p>
-                  <p>Edisi : 5</p>
-                  <p>Ketersediaan : Ada</p>
-                  <p>Total Stok : 2</p>
-                  <p>Nama Rak : Teknologi</p>
-                  <p>Nomor Rak : T2</p>
-                </div>
-              </div>
+              {/* <div className="flex justify-start gap-x-24 w-full mt-4"> */}
+                <DetailList field={leftRows} data={""}/>
+                <DetailList field={rightRows} data={""}/>
+              {/* </div> */}
             </div>
           </div>
           <h3 className="text-white font-bold text-2xl mt-10 underline underline-offset-8 decoration-brand-primary">
@@ -126,6 +143,29 @@ const BookDetails = () => {
           />
         </div>
       </Box>
+      <Modal show={modal} onClose={handleClose}>
+        <ModalsForm
+          title={"Update Book Details"}
+          handleCancel={handleClose}
+          handleConfirm={handleClose}
+          handleSubmit={handleSubmit(pushData)}
+        >
+          <div className="flex gap-5">
+            <FormLooper
+              extraClass="flex flex-col gap-5"
+              formdata={formBookUpdate.left}
+              register={register}
+              errors={errors}
+            />
+             <FormLooper
+              extraClass="flex flex-col gap-5"
+              formdata={formBookUpdate.right}
+              register={register}
+              errors={errors}
+            />
+          </div>
+        </ModalsForm>
+      </Modal>
     </PageLayout>
   );
 };

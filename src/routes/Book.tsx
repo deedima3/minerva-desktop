@@ -60,7 +60,7 @@ const Book = () => {
 
   const [user, setUser, removeUser] = useLocalStorage("user", null);
 
-  const fetchData = async () => {
+  const fetchData = async () => { 
     let data = await adminBookApi.getAllBooks(user!);
     console.log(data)
     let returnData = data.map((item: any) => {
@@ -143,6 +143,14 @@ const Book = () => {
                 >
                   Delete
                 </SmallButton>
+                <Link to="/user/1">
+                <SmallButton
+                  variant="solid"
+                  extraClass={"text-brand-black-primary"}
+                >
+                  Detail
+                </SmallButton>
+              </Link>
               </div>
             </div>
           }

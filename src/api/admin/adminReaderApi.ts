@@ -8,4 +8,12 @@ export default {
             }
         });
     },
+
+    async getUserBorrowed(user : string){
+        return client.get("/admin/get-borrowed", {
+            headers: {
+                "Authorization": `Bearer ${user}`
+            }
+        });
+    },
 }

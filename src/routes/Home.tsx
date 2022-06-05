@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import StatsCard from "../components/Card/StatsCard";
 import UserReturnCard from "../components/Card/UserReturnCard";
@@ -8,8 +8,25 @@ import { LineChart, Line, CartesianGrid, Legend, Tooltip, XAxis, YAxis } from "r
 import { data } from "../data/linedummy";
 import { StopOutlined } from "@ant-design/icons";
 import Toast from "../components/Toast/Toast";
+import adminReaderApi from "../api/admin/adminReaderApi";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 
 const Home = () => {
+  const [ data, setData ] = useState([]);
+  const [user, setUser, removeUser] = useLocalStorage("user", null);
+
+  const fetchData = async () => { 
+    let data = await adminReaderApi.getUserBorrowed(user!);
+    console.log(data)
+    setData(data.data);
+  }
+
+  useEffect(() => {
+    if (user) {
+      fetchData();
+    }
+  } , [user])
+  
   return (
     <PageLayout>
       <div className="flex flex-row justify-between w-full gap-10">
@@ -34,11 +51,18 @@ const Home = () => {
           </div>
         </div>
         <div className="flex flex-col gap-5 min-w-max h-full max-h-full">
+        {/* {data && data.map((name : any, title : any, exp: any) =>{
+          <UserReturnCard 
+            name = {name.Member.Nama}
+            title = {}
+            exp = {exp.ExpireBorrow}
+          />
+        })} */}
+          {/* <UserReturnCard />
           <UserReturnCard />
           <UserReturnCard />
           <UserReturnCard />
-          <UserReturnCard />
-          <UserReturnCard />
+          <UserReturnCard /> */}
         </div>
       </div>
     </PageLayout>

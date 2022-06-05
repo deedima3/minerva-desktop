@@ -1,5 +1,5 @@
 import { EditOutlined, UserAddOutlined } from "@ant-design/icons";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Box from "../components/Box/Box";
 import CustomButton from "../components/Button/CustomButton";
@@ -11,6 +11,8 @@ import { columns, data } from "../data/userData";
 import { useModal } from "../hooks/useModal";
 import ConfirmCard from "../components/Card/ConfirmCard";
 import Modal from "../components/Modals/Modal";
+import adminReaderApi from "../api/admin/adminReaderApi";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 
 const User = () => {
   const handleConfirm = () => {
@@ -19,6 +21,22 @@ const User = () => {
   }
 
   const [modal, setModal, handleClose, handleOpen] = useModal();
+
+  const [ data, setData ] = useState([]);
+
+  const [user, setUser, removeUser] = useLocalStorage("user", null);
+
+  const fetchData = async () => { 
+    let data = await adminReaderApi.getAllReader(user!);
+    console.log(data.data)
+    setData(data.data);
+  }
+
+  useEffect(() => {
+    if (user) {
+      fetchData();
+    }
+  } , [user])
 
   return (
     <PageLayout>
