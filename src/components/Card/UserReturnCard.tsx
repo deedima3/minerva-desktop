@@ -1,7 +1,14 @@
 import React from "react";
 import user from "../../static/userprofile.svg";
 
-const UserReturnCard = () => {
+interface Props {
+  image : string
+  name : string
+  bookTitle : string
+  expired : string
+}
+
+const UserReturnCard = ({image, name, bookTitle, expired} : Props) => {
   return (
     <div className="flex bg-brand-black-secondary rounded-md p-6">
       <img src={user} alt="user picture" className="rounded-full w-16" />

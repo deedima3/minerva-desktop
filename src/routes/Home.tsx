@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import StatsCard from "../components/Card/StatsCard";
 import UserReturnCard from "../components/Card/UserReturnCard";
@@ -10,6 +10,12 @@ import { StopOutlined } from "@ant-design/icons";
 import Toast from "../components/Toast/Toast";
 
 const Home = () => {
+
+  const [borrowedData, setBorrowedData] = useState<any>(null);
+
+  const fetchData = async () => {
+  }
+  
   return (
     <PageLayout>
       <div className="flex flex-row justify-between w-full gap-10">
@@ -34,11 +40,11 @@ const Home = () => {
           </div>
         </div>
         <div className="flex flex-col gap-5 min-w-max h-full max-h-full">
-          <UserReturnCard />
-          <UserReturnCard />
-          <UserReturnCard />
-          <UserReturnCard />
-          <UserReturnCard />
+          <UserReturnCard image={""} name={""} bookTitle={""} expired={""} />
+          <UserReturnCard image={""} name={""} bookTitle={""} expired={""} />
+          <UserReturnCard image={""} name={""} bookTitle={""} expired={""} />
+          <UserReturnCard image={""} name={""} bookTitle={""} expired={""} />
+          <UserReturnCard image={""} name={""} bookTitle={""} expired={""} />
         </div>
       </div>
     </PageLayout>

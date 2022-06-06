@@ -29,10 +29,10 @@ export const formfieldBookData : {left : FormFieldData[], right : FormFieldData[
   ],
   right: [
     {
-      title: "Id Jenis",
-      fieldname: "idJenis",
-      type: "select",
-      option : ["Kategori 1", "Kategori 2", "Kategori 3"]
+      title: "Image",
+      placeholder: "http://image.png",
+      fieldname: "image",
+      type: "text",
     },
     {
         title : "Bahasa",
@@ -57,12 +57,6 @@ export const formfieldBookData : {left : FormFieldData[], right : FormFieldData[
         placeholder: "Ini isi apa?",
         fieldname : "ISBN",
         type : "text",
-    },
-    {
-        title : "Kategori",
-        fieldname : "idKaegori",
-        type : "select",
-        option : ["Kategori 1", "Kategori 2", "Kategori 3"]
     },
   ],
 };

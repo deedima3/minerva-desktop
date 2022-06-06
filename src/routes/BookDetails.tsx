@@ -7,6 +7,7 @@ import CustomButton from "../components/Button/CustomButton";
 import PageLayout from "../components/Layout/PageLayout";
 import Table from "../components/Table/Table";
 import { useLocalStorage } from "../hooks/useLocalStorage";
+import { BookDetail } from "../interfaces/book.interface";
 import bookimage from "../static/bookimage.svg";
 import bookimage2 from "../static/bookimage2.svg"
 
@@ -21,42 +22,28 @@ const BookDetails = () => {
     "Tgl Expired",
   ];
 
-  const data = [
-    [
-      "20004",
-      "Sagung Githa Abednigo",
-      "gedesudimahendra@gmail.com",
-      "081212121212",
-      "Dipinjam",
-      "2020-01-01",
-    ],
-    [
-      "20004",
-      "Sagung Githa Abednigo",
-      "gedesudimahendra@gmail.com",
-      "081212121212",
-      "Dipinjam",
-      "2020-01-01",
-    ],
-    [
-      "20004",
-      "Sagung Githa Abednigo",
-      "gedesudimahendra@gmail.com",
-      "081212121212",
-      "Dipinjam",
-      "2020-01-01",
-    ],
-  ];
-
-  const [bookData, setBookData] = useState({})
+  const [bookData, setBookData] = useState<BookDetail | null>(null)
   const [user, setUser, removeUser] = useLocalStorage("user", null);
+  const [borrowedData, setBorrowedData] = useState<any>(null);
 
   const { id } = useParams()
   
   const fetchData = async () => {
-    const response = await adminBookApi.getDetailBook(user!, id!);
-    console.log(response)
-    setBookData(response.data)
+    const response = await adminBookApi.getDetailBook(id!, user!);
+    const history = await adminBookApi.getHistoryBookedBook(id!, user!);
+    let arrayReturn = history.map((item: any) => {
+      let arrayTemp = []
+      arrayTemp.push(item.ID)
+      arrayTemp.push(item.Member.Nama)
+      arrayTemp.push(item.Member.Email)
+      arrayTemp.push(item.Member.Phone)
+      arrayTemp.push(item.Borrowed ? "Dipinjam" : "Dikembalikan")
+      arrayTemp.push(item.ExpireBorrow)
+      return arrayTemp
+    })
+    setBorrowedData(arrayReturn)
+    setBookData(response)
+    console.log(arrayReturn)
   }
 
   useEffect(() => {
@@ -87,31 +74,29 @@ const BookDetails = () => {
       <Box variant="secondary" extraClass={"w-full rounded-xl mt-5 relative"}>
         <div className="py-5 px-8 bg-brand-primary w-full inset-0 rounded-t-xl h-max">
           <h3 className="text-2xl font-Inter font-bold text-brand-black-primary">
-            Sebuah seni untuk bersikap bodo amat
+            {bookData && bookData!.JudulSeri}
           </h3>
         </div>
         <div className="py-5 px-8">
           <div className="flex gap-8">
-            <img src={bookimage2} alt="Book Image" className="w-64 h-48 rounded-md" />
+            <img src={bookData ? bookData!.Image : ""} alt="Book Image" className="w-64 h-48 rounded-md" />
             <div className="flex w-full flex-col">
               <h3 className="text-white font-bold text-2xl underline underline-offset-8 decoration-brand-primary">
                 Informasi Buku :</h3>
               <div className="flex justify-start gap-x-24 w-full mt-4">
                 <div className="text-white font-light text-s ">
-                  <p>ID Buku : BK120</p>
-                  <p>Nomor Seri : 01</p>
-                  <p>Judul Seri : Lorem Ipsum</p>
-                  <p>Penerbit : Gramedia Pustaka</p>
-                  <p>Tipe Buku : Karya Ilmiah</p>
-                  <p>Bahasa : Latin</p>
+                  <p>ID Buku : {bookData && bookData!.ID}</p>
+                  <p>Nomor Seri : {bookData && bookData!.ID}</p>
+                  <p>Judul Seri : {bookData && bookData!.JudulSeri}</p>
+                  <p>Penerbit : {bookData && bookData!.Penerbit}</p>
+                  <p>Tipe Buku : {bookData && bookData!.JudulSeri}</p>
+                  <p>Bahasa : {bookData && bookData!.Bahasa}</p>
                 </div>
                 <div className="text-white font-light text-s ">
-                  <p>ISBN : - </p>
-                  <p>Edisi : 5</p>
-                  <p>Ketersediaan : Ada</p>
-                  <p>Total Stok : 2</p>
-                  <p>Nama Rak : Teknologi</p>
-                  <p>Nomor Rak : T2</p>
+                  <p>ISBN : {bookData && bookData!.ISBN}</p>
+                  <p>Edisi : {bookData && bookData!.Edisi}</p>
+                  <p>Ketersediaan : {bookData && bookData!.Ketersediaan}</p>
+                  <p>Total Stok : {bookData && bookData!.Stock}</p>
                 </div>
               </div>
             </div>
@@ -119,7 +104,7 @@ const BookDetails = () => {
           <h3 className="text-white font-bold text-2xl mt-10 underline underline-offset-8 decoration-brand-primary">
             Riwayat Peminjaman </h3>
           <Table
-            data={data}
+            data={borrowedData ? borrowedData : []}
             columns={columns}
             extraClassTable="w-full even:bg-brand-black-secondary"
             extraClassContainer="w-full bg-brand-black-alt mt-5"

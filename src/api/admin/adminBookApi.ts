@@ -22,6 +22,7 @@ export default {
   },
 
   async getDetailBook(id: string, user : string){
+    console.log(id, user)
     return (await client.post(`/admin/detail-book`, { idBook : parseInt(id) }, {headers : {
         "Authorization" : `Bearer ${user}`
     }})).data.data;
@@ -44,4 +45,14 @@ export default {
         },
       })).data
   },
+
+  async getHistoryBookedBook(id : string, user: string) {
+    return (
+      await client.post("/admin/history",{ "idBook" : parseInt(id) },{
+        headers: {
+          Authorization: `Bearer ${user}`,
+        },
+      })
+    ).data.data;
+  }
 };

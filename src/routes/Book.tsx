@@ -31,11 +31,6 @@ const Book = () => {
     setModal(false);
   };
 
-  const pushData = (data: any) => {
-    console.log("Push Data");
-    console.log(data);
-  };
-
   const schema = yup.object({
     image: yup.string().optional(),
     title: yup.string().required("Judul wajib diisi"),
@@ -72,9 +67,22 @@ const Book = () => {
       arrayReturn.push(item.ISBN)
       arrayReturn.push(item.Ketersediaan.toString())
       arrayReturn.push(item.Stock)
+      arrayReturn.push(<Link to={`/book/${item.ID}`}>
+      <SmallButton
+        variant="solid"
+        extraClass={"text-brand-black-primary w-20"}
+      >
+        Detail
+      </SmallButton>
+      </Link>)
       return arrayReturn
     })
     setData(returnData);
+  }
+
+  const pushData = (data: any) => {
+    console.log("Push Data");
+    console.log(data);
   }
 
   useEffect(() => {

@@ -1,5 +1,5 @@
 import { EditOutlined, UserAddOutlined } from "@ant-design/icons";
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Box from "../components/Box/Box";
 import CustomButton from "../components/Button/CustomButton";
@@ -17,6 +17,14 @@ const User = () => {
     console.log("Confirm")
     setModal(false)
   }
+
+  const [userData, setUserData] = useState([]);
+
+  const fetchData = async () => {
+    let data = await adminUserApi.getAllUsers();
+    setUserData(data);
+  }
+  
 
   const [modal, setModal, handleClose, handleOpen] = useModal();
 

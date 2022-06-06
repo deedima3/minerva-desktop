@@ -40,17 +40,6 @@ const Table = ({
                     </th>
                   );
                 })}
-                <th className="pt-3.5">
-                <Link to={`/book/${row[4]}}`}>
-                  {console.log(row)}
-                  <SmallButton
-                    variant="solid"
-                    extraClass={"text-brand-black-primary"}
-                  >
-                    Detail
-                  </SmallButton>
-                </Link>
-                </th>
               </tr>
             );
           })}
